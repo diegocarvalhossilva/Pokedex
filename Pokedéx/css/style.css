@@ -67,9 +67,20 @@ main {
 	box-shadow: -3px 4px 0 #888;
 }
 
-.buttons{
+.buttonsTop{
 	position: absolute;
-	bottom: 10%;
+	bottom: 18%;
+	left: 50%;
+	width: 65%;
+	transform: translate(-57%, 0);
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}
+
+.buttonsBottom{
+	position: absolute;
+	bottom: 8%;
 	left: 50%;
 	width: 65%;
 	transform: translate(-57%, 0);
