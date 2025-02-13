@@ -103,3 +103,11 @@ main {
 .button:active{
 	box-shadow: inset -4px 4px 0 #222;
 }
+
+/*Formatação que mostra a tipagem do pokemon*/
+.label {
+	color: white;
+	padding: 8px;
+	background: linear-gradient(to bottom, #f55d2a,#F53020);
+	border-radius: 5px;
+}

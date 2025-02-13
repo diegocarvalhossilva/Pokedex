@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Label com JavaScript</title>
+</head>
+<body>
+
+    <div id="container"></div>
+
+    <script>
+        // Criar o elemento <label>
+        var label = document.createElement('label');
+
+        // Adicionar texto ao label
+        label.textContent = "Nome: ";
+
+        // Opcional: adicionar um atributo 'for' ao label (referencia um input)
+        label.setAttribute('for', 'nomeInput');
+
+        // Criar o elemento <input> para associar à label
+        var input = document.createElement('input');
+        input.setAttribute('id', 'nomeInput');
+        input.setAttribute('type', 'text');
+
+        // Adicionar a label e o input ao elemento "container"
+        var container = document.getElementById('container');
+        container.appendChild(label);
+        container.appendChild(input);
+    </script>
+
+</body>
+</html>
