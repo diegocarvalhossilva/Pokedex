@@ -2,7 +2,8 @@ const pokemonName = document.querySelector('.pokemon_name');
 const pokemonNumber = document.querySelector('.pokemon_number');
 const pokemonImg = document.querySelector('.pokemon_image');
 const pokemonCry = document.querySelector('.pokemon_cry');
-const pokemonType = document.querySelector('.pokemon_type');
+const pokemonType0 = document.querySelector('.pokemon_type0');
+const pokemonType1 = document.querySelector('.pokemon_type1');
 
 const form = document.querySelector('.form');
 const input = document.querySelector('.input_search');
@@ -12,7 +13,6 @@ const shiny = document.querySelector('.shiny');
 
 let searchPokemon = 1;
 let isShiny = true;
-
 
 const fetchPokemon = async (pokemon) => {
     const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
@@ -35,6 +35,7 @@ const renderPokemon = async (pokemon) =>{
         pokemonName.innerHTML = data.name;
         pokemonNumber.innerHTML = data.id;
         pokemonCry.src = data['cries']['latest'];
+
         if (isShiny){
             pokemonImg.src = data['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
         }
@@ -42,8 +43,16 @@ const renderPokemon = async (pokemon) =>{
             pokemonImg.src = data['sprites']['versions']['generation-v']['black-white']['animated']['front_shiny'];
         }
 
-        pokemonType.innerHTML = data['types']['0']['type']['name'];
+        pokemonType0.innerHTML = data['types']['0']['type']['name'].toUpperCase();
+
+        if(data['types']['1'] != null){
+            pokemonType1.innerHTML = data['types']['1']['type']['name'].toUpperCase();
+        } else {
+            pokemonType1.style.display = "none";
+        }
             
+        //document.getElementsByClassName("pokemon_type0").style.
+
         input.value = '';
         searchPokemon = data.id;
 
@@ -69,14 +78,17 @@ form.addEventListener('submit', (event) =>{
 btnPrev.addEventListener('click', () =>{
     if (searchPokemon > 1) {
         searchPokemon -= 1;
-        renderPokemon(searchPokemon);
     }
+
+    renderPokemon(searchPokemon);
+
 });
 
 //Botão que avança o Id
 btnNext.addEventListener('click', () =>{
     searchPokemon += 1;
     renderPokemon(searchPokemon);
+
 });
 
 //Botão que muda o pokemon para Shiny
