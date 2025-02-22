@@ -44,12 +44,13 @@ const renderPokemon = async (pokemon) =>{
         }
 
         pokemonType0.innerHTML = data['types']['0']['type']['name'].toUpperCase();
-
         if(data['types']['1'] != null){
             pokemonType1.innerHTML = data['types']['1']['type']['name'].toUpperCase();
+            pokemonType1.style.display = "flex";
         } else {
             pokemonType1.style.display = "none";
         }
+
             
         //document.getElementsByClassName("pokemon_type0").style.
 
