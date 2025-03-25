@@ -11,6 +11,7 @@ const btnPrev = document.querySelector('.btn-prev');
 const btnNext = document.querySelector('.btn-next');
 const shiny = document.querySelector('.shiny');
 
+let pokemonTypeColor;
 let searchPokemon = 1;
 let isShiny = true;
 
@@ -36,6 +37,7 @@ const renderPokemon = async (pokemon) =>{
         pokemonNumber.innerHTML = data.id;
         pokemonCry.src = data['cries']['latest'];
 
+        //Verifica se é shiny
         if (isShiny){
             pokemonImg.src = data['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
         }
@@ -43,16 +45,37 @@ const renderPokemon = async (pokemon) =>{
             pokemonImg.src = data['sprites']['versions']['generation-v']['black-white']['animated']['front_shiny'];
         }
 
-        pokemonType0.innerHTML = data['types']['0']['type']['name'].toUpperCase();
-        if(data['types']['1'] != null){
-            pokemonType1.innerHTML = data['types']['1']['type']['name'].toUpperCase();
+        //Mostra o tipo e verifica se ele é duplo ou não
+        pokemonType0.innerHTML = data['types'][0]['type']['name'].toUpperCase();
+        if(data['types'][1] != null){
+            pokemonType1.innerHTML = data['types'][1]['type']['name'].toUpperCase();
             pokemonType1.style.display = "flex";
         } else {
             pokemonType1.style.display = "none";
         }
 
+        pokemonTypeColor = data['types'][0]['type']['name'];
+
+        switch (pokemonTypeColor){
+            case "grass":
+                pokemonTypeColor = '#008000';
+                break;
             
-        //document.getElementsByClassName("pokemon_type0").style.
+            case "fire":
+                pokemonTypeColor = '#FF8C00';
+                break;
+
+            case "water":
+                pokemonTypeColor = '#0000CD';
+                break;
+            
+            default:
+                pokemonTypeColor = '#C0C0C0';
+        }
+
+        document.getElementById("type0").style.backgroundColor = pokemonTypeColor;
+        document.getElementById("type1").style.backgroundColor = "#C0C0C0";
+ 
 
         input.value = '';
         searchPokemon = data.id;
